@@ -1,7 +1,7 @@
 <?php
 // fichier app/Config/config.local.php
 // Nom de la base de données
-define('APP_DB_NAME', 'db_name');
+define('APP_DB_NAME', 'tp2poa');
 // Utilisateur de la base de données MySQL.
 define('APP_DB_USER', 'root');
 // Mot de passe de la base de données MySQL.
