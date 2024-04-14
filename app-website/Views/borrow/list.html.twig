@@ -1,0 +1,35 @@
+{% extends 'backoffice/backoffice.html.twig' %}
+{% block title %}Liste des emprunts{% endblock %}
+{% block content_back %}
+<h1 class="display-2">Liste des emprunts</h1>
+
+  <a href="{{ url( '/borrows/add') }}" class="btn btn-primary">
+    <i class="las la-reply"></i>
+    Ajouter
+  </a>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Utilisateur</th>
+      <th>Livre</th>
+      <th>Date de rendu maximum</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for borrow in borrows %}
+    <tr>
+      <th scope="row">{{ borrow.id }}</th>
+      <td>{{ borrow.user }}</td>
+      <td class='col-3'>{{ borrow.book }}</td>
+      <td class='col-3'>{{ borrow.date }}</td>
+      <td>
+        <a href="{{ url( '/borrows/delete/' ) ~ borrow.id }}" class="btn btn-outline-danger
+        btn-sm"><i class="far fa-trash-alt"></i> livre rendu</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

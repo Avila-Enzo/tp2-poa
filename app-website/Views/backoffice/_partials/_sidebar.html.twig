@@ -1,24 +1,36 @@
  <!-- Sidebar -->
 	<nav id="sidebar">
 		 <div class="sidebar-header">
-			 <h3>Title</h3>
-			 <strong>BS</strong>
+			 <h3>Librairie</h3>
+			 <strong>Lib</strong>
 		 </div>
 		 <ul class="list-unstyled components">
-			 <li class="{% if activItem == 'site' %}active{% endif %}">
-				 <a href="{{ url('/')}}" target="_blank">
-					 <i class="fas fa-home"></i>
-					 Le site
+			 <li class="{% if activItem == 'users' %}active{% endif %}">
+				 <a href="{{ url('/users') }}">
+					 <i class="fas fa-users"></i>
+					 Utilisateurs
 				 </a>
 			 </li>
-			 <li class="{% if activItem == 'accueil' %}active{% endif %}">
-				 <a href="{{ url('/backoffice') }}">
-					 <i class=""></i>
-					 Accueil
+			 <li class="{% if activItem == 'books' %}active{% endif %}">
+				 <a href="{{ url('/books') }}">
+					 <i class="fas fa-book-open"></i>
+					 Livres
 				 </a>
-			 </li>			 
+			 </li>	 
+			 <li class="{% if activItem == 'authors' %}active{% endif %}">
+				 <a href="{{ url('/authors') }}">
+					 <i class="fas fa-pen-nib"></i>
+					 Auteurs
+				 </a>
+			 </li>
+			 <li class="{% if activItem == 'emprunts' %}active{% endif %}">
+				 <a href="{{ url('/borrows') }}">
+					 <i class="fas fa-box"></i>
+					 Emprunts
+				 </a>
+			 </li>	
 			 <li class="{% if activItem == 'database' %}active{% endif %}">
-				 <a href="#">
+				 <a href="http://127.0.0.1/phpmyadmin" target="_blank">
 					 <i class="fas fa-database"></i>
 					 Base de données
 				 </a>

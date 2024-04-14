@@ -1,0 +1,35 @@
+{% extends 'backoffice/backoffice.html.twig' %}
+{% block title %}Liste des auteurs{% endblock %}
+{% block content_back %}
+<h1 class="display-2">Liste des auteurs</h1>
+
+  <a href="{{ url( '/authors/add') }}" class="btn btn-primary">
+    <i class="las la-reply"></i>
+    Ajouter
+  </a>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Biographie</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for author in authors %}
+    <tr>
+      <th scope="row">{{ author.id }}</th>
+      <td>{{ author.name }}</td>
+      <td class='col-3'>{{ author.bio }}</td>
+  <td><a href="{{ url( '/authors/delete/' ) ~ author.id }}" class="btn btn-outline-danger
+      btn-sm"><i class="far fa-trash-alt"></i> effacer</a>
+      <a href="{{ url( '/authors/edit/' ) ~ author.id }}" class="btn btn-outline-success
+      btn-sm"><i class="far fa-edit"></i> éditer</a>
+
+</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

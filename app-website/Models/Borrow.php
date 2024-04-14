@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class Book extends Base {
+class Borrow extends Base {
 
-    protected $tableName = APP_TABLE_PREFIX . 'books';
+    protected $tableName = APP_TABLE_PREFIX . 'borrows';
 
     protected static $instance;
 

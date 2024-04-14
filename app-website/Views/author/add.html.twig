@@ -1,0 +1,62 @@
+{% extends 'backoffice/backoffice.html.twig' %}
+{% block title %}Ajout d'un auteur{% endblock %}
+{% block content_back %}
+<div class="container">
+  <h1 class="bg-primary text-white p-4">
+    <i class="las la-angle-double-right"></i>
+    Ajouter un nouvel auteur
+  </h1>
+
+  <form action="{{ url( '/authors/add') }}" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nom :</label>
+      <div class="col-6">
+        <input type="text" name="name" class="form-control" required/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Biographie :</label>
+      <div class="col-6">
+        <textarea name="bio" class="form-control" required></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 5%">
+      <div class="offset-2">
+        <button class="btn btn-primary">
+          <i class="far fa-save"></i>
+          Enregistrer
+        </button>
+        <a href="{{ url( '/authors') }}" class="btn btn-link text-black-50">
+          <i class="las la-reply"></i>
+          Annuler
+        </a>
+      </div>
+    </div>
+  </form>
+</div> <!-- # END .container #-->
+
+<script>
+// les helpers
+function $(expr, con) {
+  return typeof expr === 'string' ? (con || document).querySelector(expr) : expr;
+}
+
+function $$(expr, con) {
+  return Array.prototype.slice.call((con || document).querySelectorAll(expr));
+}
+
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+$('#illustration').addEventListener('change',function(){
+  var fileName = $("illustration").files[0].name;
+  var nextSibling = $("forillustration")
+  nextSibling.innerHTML = fileName
+})
+});
+</script>
+{% endblock %}

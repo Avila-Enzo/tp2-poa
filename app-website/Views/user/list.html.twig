@@ -1,0 +1,35 @@
+{% extends 'backoffice/backoffice.html.twig' %}
+{% block title %}Liste des utilisateurs{% endblock %}
+{% block content_back %}
+<h1 class="display-2">Liste des utilisateurs</h1>
+
+  <a href="{{ url( '/users/add') }}" class="btn btn-primary">
+    <i class="las la-reply"></i>
+    Ajouter
+  </a>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Retards de rendu</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr {% if user.hasLateReturn %} style="background-color: salmon;" {% endif %}>
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.username }}</td>
+      <td class='col-3'>{% if user.hasLateReturn == true %} OUI {% endif %}{% if user.hasLateReturn == false %} NON {% endif %}</td>
+  <td><a href="{{ url( '/users/delete/' ) ~ user.id }}" class="btn btn-outline-danger
+      btn-sm"><i class="far fa-trash-alt"></i> effacer</a>
+      <a href="{{ url( '/users/edit/' ) ~ user.id }}" class="btn btn-outline-success
+      btn-sm"><i class="far fa-edit"></i> éditer</a>
+
+</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
