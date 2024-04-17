@@ -2,8 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\AuthorSearchStrategy;
 use App\Models\Book;
+use App\Models\ISBNSearchStrategy;
 use App\Models\Loader;
+use App\Models\TitleSearchStrategy;
 
 class BooksController extends Controller {
 
@@ -72,5 +75,38 @@ class BooksController extends Controller {
   public function update($id) {
     Book::getInstance()->update($id, $_POST);
     redirect('/books');
+  }
+
+  public function search() {
+    Loader::loadDatas();
+
+    $method = $_GET["method"];
+    $term = $_GET["term"];
+    $books = [];
+
+    switch ($method) {
+      case "title" :
+        $strategy = new TitleSearchStrategy();
+        $books = $strategy->search($term);
+        break;
+      
+      case "author" : 
+        $strategy = new AuthorSearchStrategy();
+        $books = $strategy->search($term);
+        break;
+
+      case "isbn" : 
+        $strategy = new ISBNSearchStrategy();
+        $books = $strategy->search($term);
+        break;
+    }
+
+    // Afficher la vue
+    $this->display(
+      'book/list.html.twig',
+      [
+          'books' => $books,
+      ]
+    );
   }
 }

@@ -12,33 +12,34 @@ class AuthorSearchStrategy implements Strategy {
         }
 
         $authors = $_SESSION['authors'];
-        $authorOfSearch = NULL;
+        $authorsOfSearch = [];
+        $booksOfSearch = [];
 
         foreach ($authors as $author) {
             if ($author instanceof AuthorDTO) {
-                if ($author->getName() == $authorName) {
-                    $authorOfSearch = $author;
+                if (str_contains($author->getName(), $authorName)) {
+                    array_push($authorsOfSearch, $author);
                 }
             }
+        }
 
-
-            if ($authorOfSearch != NULL) {
-                $booksOfSearch = [];
-                $books = $_SESSION['books'];
+        if (!empty($authorsOfSearch)) {
+            $books = $_SESSION['books'];
     
-                foreach ($books as $book) {
-                    if ($book instanceof BookDTO) {
+            foreach ($books as $book) {
+                if ($book instanceof BookDTO) {
+                    foreach ($authorsOfSearch as $authorOfSearch) {
                         if ($book->getAuthorId() == $authorOfSearch->getId()) {
                             array_push($booksOfSearch, $book);
                         }
                     }
-    
                 }
+    
             }
-
-            return $booksOfSearch;
-        
         }
+
+        return $booksOfSearch;
+        
     }
 }
 

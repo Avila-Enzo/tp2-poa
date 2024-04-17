@@ -13,9 +13,12 @@ use App\Models\AuthorDTO;
 use App\Models\Borrow;
 use App\Models\BorrowDTO;
 
-class Loader extends Base {
+/**
+ * Classe de Façade qui permet aux utilisateurs de charger simplement les données
+ */
+class Loader {
 
-    public static function loadAllUsers() {
+    private static function loadAllUsers() {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -48,7 +51,7 @@ class Loader extends Base {
         $_SESSION['users'] = $usersDTO;
     }
 
-    public static function loadAllBooks() {
+    private static function loadAllBooks() {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -78,7 +81,7 @@ class Loader extends Base {
         $_SESSION['books'] = $booksDTO;
     }
 
-    public static function loadAllAuthors() {
+    private static function loadAllAuthors() {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -97,7 +100,7 @@ class Loader extends Base {
         $_SESSION['authors'] = $authorsDTO;
     }
 
-    public static function loadAllBorrows() {
+    private static function loadAllBorrows() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -118,6 +121,9 @@ class Loader extends Base {
         $_SESSION['borrows'] = $borrowsDTO;
     }
 
+    /**
+     * Méthode qui sert de façade au chargement de toutes les données
+     */
     public static function loadDatas() {
         Loader::loadAllBorrows();
         Loader::loadAllAuthors();

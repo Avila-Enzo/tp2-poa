@@ -14,6 +14,7 @@ $route->addRoute('POST', '/users/edit/{id:[0-9]+}', 'UsersController@update');
 //== Gestion des livres =====================================
 $route->addRoute('GET', '/books', 'BooksController@index');
 $route->addRoute('GET', '/books/delete/{id:[0-9]+}', 'BooksController@delete');
+$route->addRoute('GET', '/books/search', 'BooksController@search');
 $route->addRoute('GET', '/books/edit/{id:[0-9]+}', 'BooksController@edit');
 $route->addRoute('POST', '/books/edit/{id:[0-9]+}', 'BooksController@update');
 $route->addRoute('GET', '/books/add', 'BooksController@add');
